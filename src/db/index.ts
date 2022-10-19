@@ -1,5 +1,29 @@
 import { QuestionType } from "../types";
 import { Image } from "react-native";
+// import { openDatabase } from "react-native-sqlite-storage";
+
+const errorCB = (err: any) => {
+  console.log("SQL Error: " + err);
+};
+
+const successCB = () => {
+  console.log("SQL executed fine");
+};
+
+const openCB = () => {
+  console.log("Database OPENED");
+};
+
+export const chapters: any[] = Array(31)
+  .fill(null)
+  .map((v, index) => ({
+    id: index,
+    title: `Chapter ${index + 1}`,
+    description: "In this chapter we are going to cover basic arithmetic.",
+    contents: [],
+    quiz: [],
+  }));
+
 export const test1: {
   title: any;
   total: number;

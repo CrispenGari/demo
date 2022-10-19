@@ -78,13 +78,13 @@ const BatterySettingsCard = () => {
         <MaterialCommunityIcons
           name={iconName as any}
           size={40}
-          color={lowMode ? "red" : "green"}
+          color={lowMode ? "red" : "#53D768"}
         />
         <View style={{ marginLeft: 10 }}>
           <Text
             style={{
-              fontFamily: FONTS.regularExtraBold,
-              color: lowMode ? "red" : "green",
+              fontFamily: FONTS.regular,
+              color: "gray",
               fontSize: 20,
               marginBottom: 5,
             }}

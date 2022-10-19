@@ -30,6 +30,10 @@ export type HomeStackParamList = {
   Tests: undefined;
   Quiz: undefined;
   Exams: undefined;
+  ReadChapter: {
+    subject: string;
+    chapter: any;
+  };
 };
 
 export type HomeStackNavProps<T extends keyof HomeStackParamList> = {

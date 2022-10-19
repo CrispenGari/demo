@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
-
 import { FONTS } from "../../../constants";
 import { HomeStackNavProps } from "../../../params";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Entypo } from "@expo/vector-icons";
+import { chapters } from "../../../db";
+import { IconButton } from "../../../components";
 const Chapters: React.FC<HomeStackNavProps<"Chapters">> = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -41,9 +42,28 @@ const Chapters: React.FC<HomeStackNavProps<"Chapters">> = ({ navigation }) => {
     });
   }, []);
   return (
-    <View>
-      <Text>Chapters</Text>
-    </View>
+    <ScrollView style={{ flex: 1 }}>
+      {chapters.map((chapter) => (
+        <IconButton
+          onPress={() =>
+            navigation.navigate("ReadChapter", {
+              subject: "Maths",
+              chapter: chapter,
+            })
+          }
+          key={chapter.id.toString()}
+          title={chapter.title}
+          Icon={{
+            color: "gray",
+            name: "open-book",
+            size: 30,
+            IconFamily: Entypo,
+          }}
+          description={chapter.description}
+        />
+      ))}
+      <View style={{ height: 100 }} />
+    </ScrollView>
   );
 };
 

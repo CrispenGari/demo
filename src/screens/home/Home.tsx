@@ -12,6 +12,7 @@ import SeeGrades from "./stacks/SeeGrades";
 import Quiz from "./stacks/Quiz";
 import Tests from "./stacks/Tests";
 import Exams from "./stacks/Exams";
+import ReadChapter from "./stacks/ReadChapter";
 
 const Stack = createStackNavigator<HomeStackParamList>();
 const Home = () => {
@@ -27,6 +28,7 @@ const Home = () => {
       <Stack.Screen name="Quiz" component={Quiz} />
       <Stack.Screen name="Tests" component={Tests} />
       <Stack.Screen name="Exams" component={Exams} />
+      <Stack.Screen name="ReadChapter" component={ReadChapter} />
     </Stack.Navigator>
   );
 };
