@@ -1,4 +1,4 @@
-import { View, Text, Button, ScrollView } from "react-native";
+import { View, Text, Button, ScrollView, Platform } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StateType } from "../../../types";
@@ -65,20 +65,21 @@ const Landing: React.FC<HomeStackNavProps<"HomeLanding">> = ({
           "Open the subject to read chapters, practice quiz, tests and past exam questions."
         }
       />
-
-      <Text
-        style={{
-          width: "100%",
-          padding: 10,
-          textAlign: "center",
-          fontFamily: FONTS.italic,
-          color: "gray",
-          marginTop: 30,
-        }}
-      >
-        This application is currently supporting one subject which is "Maths".
-        For other subjects wait for newer versions.
-      </Text>
+      {Platform.OS === "ios" ? null : (
+        <Text
+          style={{
+            width: "100%",
+            padding: 10,
+            textAlign: "center",
+            fontFamily: FONTS.italic,
+            color: "gray",
+            marginTop: 30,
+          }}
+        >
+          This application is currently supporting one subject which is "Maths".
+          For other subjects wait for newer versions.
+        </Text>
+      )}
     </ScrollView>
   );
 };
