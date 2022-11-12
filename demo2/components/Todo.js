@@ -7,11 +7,13 @@ import {
   DELETE_TODOS_COMMAND,
   UPDATE_TODOS_COMMAND,
 } from "../comands";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTodos } from "../actions";
 
 const Todo = ({ todo }) => {
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
   function deleteTodo() {
     db.transaction((transaction) => {
       transaction.executeSql(
@@ -20,7 +22,7 @@ const Todo = ({ todo }) => {
         (transaction, { rows }) => {
           transaction.executeSql(
             ALL_TODOS_COMMAND,
-            [],
+            [user?.id],
             (transaction, { rows }) => {
               dispatch(setTodos(rows._array));
             },
@@ -38,7 +40,7 @@ const Todo = ({ todo }) => {
         (transaction, { rows }) => {
           transaction.executeSql(
             ALL_TODOS_COMMAND,
-            [],
+            [user.id],
             (transaction, { rows }) => {
               dispatch(setTodos(rows._array));
             },

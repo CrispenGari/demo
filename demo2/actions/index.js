@@ -6,3 +6,10 @@ export const setTodos = (payload) => {
     payload,
   };
 };
+
+export const setUser = (payload) => {
+  return {
+    type: constants.SET_USER,
+    payload,
+  };
+};

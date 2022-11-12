@@ -2,13 +2,13 @@ import { View, Text, TextInput } from "react-native";
 import React, { useState } from "react";
 import { db } from "../db";
 import { ALL_TODOS_COMMAND, INSERT_TODO_COMMAND } from "../comands";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTodos } from "../actions";
 
 const Form = () => {
   const [title, setTitle] = useState("");
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   function addTodo() {
     if (title.length < 3) {
       return;
@@ -16,12 +16,12 @@ const Form = () => {
     db.transaction((transaction) => {
       transaction.executeSql(
         INSERT_TODO_COMMAND,
-        [title],
+        [title, user?.id],
         (transaction, { rows, insertId }) => {
           // inserted todo
           transaction.executeSql(
             ALL_TODOS_COMMAND,
-            [],
+            [user?.id],
             (transaction, { rows }) => {
               dispatch(setTodos(rows._array));
             },
